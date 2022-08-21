@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 
 
-class InventaryConfig(AppConfig):
+class UserConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'inventary'
-    verbose_name = 'Inventario'
+    name = 'user'
+    verbose_name = 'Usuarios'
