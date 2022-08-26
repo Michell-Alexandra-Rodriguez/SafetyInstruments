@@ -16,6 +16,8 @@ class UserAdmin(admin.ModelAdmin):
 class ClientAdmin(admin.ModelAdmin):
     list_display = ("id", "people")
     search_fields = ["people"]
+    admin.site.site_header = 'Safety Instruments'
+    admin.site.index_title = 'Manage your products'
 
 
 admin.site.register(IdentificationType)
