@@ -19,11 +19,14 @@ class Profile(models.Model):
     identification_number = models.IntegerField()
 
     def __str__(self):
-        return self.user
+        return self.user.username
+
+    class Meta:
+        verbose_name_plural = "User Information"
 
 
 class Client(models.Model):
     people = models.ForeignKey(Profile, on_delete=models.PROTECT)
 
     def __str__(self):
-        return str(self.people)
+        return self.people.email
