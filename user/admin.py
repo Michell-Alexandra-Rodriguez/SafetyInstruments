@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import IdentificationType, Profile, Client
+from .models import IdentificationType, UserAdditionalInformation, Client
 
 
 class PeopleAdmin(admin.ModelAdmin):
@@ -14,12 +14,12 @@ class UserAdmin(admin.ModelAdmin):
 
 
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ("id", "people")
-    search_fields = ["people"]
+    list_display = ("id", "name","email")
+    search_fields = ["name"]
     admin.site.site_header = 'Safety Instruments'
     admin.site.index_title = 'Manage your products'
 
 
 admin.site.register(IdentificationType)
-admin.site.register(Profile)
+admin.site.register(UserAdditionalInformation)
 admin.site.register(Client, ClientAdmin)

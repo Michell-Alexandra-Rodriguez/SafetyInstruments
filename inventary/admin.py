@@ -15,7 +15,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "description", "price", "quantity", "warranty", "date_arrival", "category", "supplier",
+    list_display = ("id", "name", "description", "price_by_unity", "quantity", "warranty", "date_arrival", "category", "supplier",
                     "state_product")
     search_fields = ["name"]
     list_filter = ["date_arrival", "state_product"]
