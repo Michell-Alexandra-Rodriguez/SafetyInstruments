@@ -1,14 +1,16 @@
-from django.core.validators import RegexValidator
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
+
 from generalvalidations.database_validations import characters_size_should_be_grater_than_two, \
     should_be_alphabetic, should_not_have_spaces, is_number, cellphone_number_size_is_ten, \
-    identification_number_size_should_be_greater_than_seven, should_not_have_special_characters
+    identification_number_size_should_be_greater_than_seven, should_not_have_special_characters, \
+    characters_size_should_be_grater_than_one, should_not_have_accents
 
 
 class IdentificationType(models.Model):
     type = models.CharField(max_length=4, unique=True, validators=[
-        characters_size_should_be_grater_than_two, should_be_alphabetic, should_not_have_spaces
+        characters_size_should_be_grater_than_one, should_be_alphabetic, should_not_have_spaces,
+        should_not_have_special_characters, should_not_have_accents
     ])
 
     def __str__(self):
