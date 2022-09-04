@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
+import re
 
 
 def state_product_should_be_greater_than_four(value):
@@ -20,14 +21,21 @@ def common_size_for_strings(value):
 
 def should_not_have_special_characters(value):
     matches = ["+", "*", "/", "-", "_", "ç", "!", "¡", "¨", ":", "@", ";", "}", "{", "]", "[", "^", "¿", "?", "=", "%",
-               "(", ")", "<", ">", "Ç",
-               "$", "&"]
+               "(", ")", "<", ">", "Ç", ".", "$", "&", "`", "´"]
     if any(x in value for x in matches):
         raise ValidationError(
             _('%(value)s must not have special characters'),
             params={'value': value},
         )
 
+
+def should_not_have_accents(value):
+    matches = ["á", "é", "í", "ó", "ú", "Á", "É", "Í", "Ó", "Ú", "ä", "ë", "ï", "ö", "ü", "Ä", "Ë", "Ï", "Ö", "Ü"]
+    if any(x in value for x in matches):
+        raise ValidationError(
+            _('%(value)s must not have special accents'),
+            params={'value': value},
+        )
 
 def should_not_have_spaces(value):
     if str(value).__contains__(" "):
@@ -38,7 +46,7 @@ def should_not_have_spaces(value):
 
 
 def should_be_alphabetic(value):
-    if not str(value).isalpha():
+    if re.findall("[0-9]", value):
         raise ValidationError(
             _('%(value)s should be alphabetic'),
             params={'value': value},
@@ -49,6 +57,14 @@ def characters_size_should_be_grater_than_two(value):
     if len(value) < 3:
         raise ValidationError(
             _('%(value)s should be greater than 2 letters'),
+            params={'value': value},
+        )
+
+
+def characters_size_should_be_grater_than_one(value):
+    if len(value) < 2:
+        raise ValidationError(
+            _('%(value)s should be greater than 1 letters'),
             params={'value': value},
         )
 

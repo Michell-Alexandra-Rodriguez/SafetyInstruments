@@ -7,7 +7,7 @@ from generalvalidations.database_validations import characters_size_should_be_gr
 
 
 class PaymentType(models.Model):
-    name = models.CharField(max_length=10, unique=True,
+    name = models.CharField(max_length=20, unique=True,
                             validators=[characters_size_should_be_grater_than_two, should_be_alphabetic,
                                         should_not_have_special_characters])
 

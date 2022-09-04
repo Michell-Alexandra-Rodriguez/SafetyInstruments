@@ -1,6 +1,5 @@
 from django.contrib import admin
 
-from django.contrib import admin
 from .models import Category, StateProduct, Supplier, Product
 
 
@@ -10,12 +9,12 @@ class SupplierAdmin(admin.ModelAdmin):
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ("id", "name")
+    list_display = ("name",)
     search_fields = ["name"]
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "description", "price_by_unity", "quantity", "warranty", "date_arrival", "category", "supplier",
+    list_display = ("id", "name", "price_by_unity", "quantity", "warranty", "date_arrival", "category", "supplier",
                     "state_product")
     search_fields = ["name"]
     list_filter = ["date_arrival", "state_product"]
