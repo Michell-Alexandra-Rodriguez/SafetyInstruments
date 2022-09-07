@@ -1,10 +1,10 @@
-from django.http import HttpResponse, HttpResponseRedirect
-from .models import Sell, PaymentType
-from user.models import User, Client
-from inventary.models import Product
-from django.urls import reverse
-from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
+
+from inventary.models import Product
+from user.models import User, Client
+from .models import Sell, PaymentType
 
 my_list = [i for i in range(1, 11)]
 result = list(map(lambda current_number: current_number ** 2, my_list))
@@ -25,11 +25,11 @@ def sell_form(request):
         else:
             if (not str(quantity).isnumeric()) or int(quantity) > int(product.quantity):
                 return HttpResponse(f"Sorry, we do not have all those products")
-            new_venta = Sell(client=client, product=product, payment_type=payment_type, user=user, quantity=quantity)
-            new_venta.save()
+            new_sell = Sell(client=client, product=product, payment_type=payment_type, user=user, quantity=quantity)
+            new_sell.save()
             product.quantity = (int(product.quantity) - int(quantity))
             product.save(update_fields=["quantity"])
-            return HttpResponseRedirect(reverse("products_list_url"))
+            return redirect("../../admin/inventary/product/")
 
     client_list = Client.objects.all()
     client_name_list = list(map(lambda current_client: current_client.email, client_list))
