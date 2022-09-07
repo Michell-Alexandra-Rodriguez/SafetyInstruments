@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block head_content %}
+<title>Sign in</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/inventary/style.css' %}">
+{% endblock%}
+
+{% block container %}
+<table id="customers">
+    <tr>
+        <th>Nombre del Producto</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+        <th>Garantia</th>
+        <th>Fecha de llegada</th>
+        <th>Categoria</th>
+        <th>Proveedor</th>
+        <th>Estado de producto</th>
+    </tr>
+    {% for current_product in all_products %}
+    <tr>
+        <td>{{current_product.name}}</td>
+        <td>{{current_product.description}}</td>
+        <td>{{current_product.price_by_unity}}</td>
+        <td>{{current_product.quantity}}</td>
+        <td>{{current_product.warranty}}</td>
+        <td>{{current_product.date_arrival}}</td>
+        <td>{{current_product.category}}</td>
+        <td>{{current_product.supplier}}</td>
+        <td>{{current_product.state_product}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,7 +1,12 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-from django.http import HttpResponse
+
+from inventary.models import Product
 
 
-# Create your views here.
+@login_required
 def index(request):
-    return HttpResponse("Hello word")
+    products = Product.objects.all()
+    return render(request, "feed.html", {
+        "all_products": products
+    })
