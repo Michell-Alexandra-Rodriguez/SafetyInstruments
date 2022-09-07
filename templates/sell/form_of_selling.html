@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block head_content %}
+<title>Sign in</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/sell/style.css' %}">
+{% endblock%}
+
+{% block container %}
+<body>
+   <div class="form-style-5">
+    <form action="{% url 'sell_url' %}" method="post">
+        {% csrf_token %}
+        <fieldset>
+            <legend><h2 class="number">1</h2> Sell Product</legend>
+            <label for="client">Client:</label>
+            <select id="clients" name="current_client">
+            {% for current_client in all_clients %}
+                <option value="{{current_client}}" name="current_client">{{current_client}}</option>
+            {% endfor %}
+        </select>
+        </br>
+            <label for="product">Product:</label>
+            <select id="products" name="current_product">
+            {% for current_product in all_products %}
+            <option value="{{current_product}}" name="current_product">{{current_product}}</option>
+        {% endfor %}
+    </select>
+        </br>
+            <label for="payment_type">Payment Type:</label>
+            <select id="payments" name="current_payment_type">
+            {% for current_payment_type in all_payment_types %}
+            <option value="{{current_payment_type}}" name="current_payment_type">{{current_payment_type}}</option>
+        {% endfor %}
+    </select>
+        </br>
+            <label for="user">User:</label>
+            <select id="payments" name="current_user">
+            {% for current_user in all_users %}
+            <option value="{{current_user}}" name="current_user">{{current_user}}</option>
+        {% endfor %}
+    </select>
+        </br>
+        <label for="quantity">quantity:</label>
+        <input type="text" id="quantity_id" name="quantity" required> </input>
+        </br>
+        </fieldset>
+        <input type="submit" value="Sell product"></input>
+    </form>
+</div>
+{% endblock %}

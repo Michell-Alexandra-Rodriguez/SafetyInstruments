@@ -44,7 +44,7 @@ class Supplier(models.Model):
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=70, validators=[characters_size_should_be_grater_than_two])
+    name = models.CharField(max_length=70, unique=True, validators=[characters_size_should_be_grater_than_two])
     description = models.CharField(max_length=255)
     price_by_unity = models.PositiveIntegerField()
     quantity = models.PositiveSmallIntegerField()

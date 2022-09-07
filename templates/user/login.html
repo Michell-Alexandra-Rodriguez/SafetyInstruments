@@ -1,0 +1,26 @@
+{% extends "user/base.html" %}
+
+{% block head_content %}
+<title>Sign in</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/sell/style.css' %}">
+{% endblock%}
+
+{% block container %}
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif%}
+    <form method="POST" action="{% url "loginUrl" %}">
+        {% csrf_token %}
+
+        <input class="input-lable-4" type="text" placeholder="Username" name="username"/>
+        </br>
+        </br>
+        <input class="input-lable-4" type="password" placeholder="Password" name="password" />
+        </br>
+        </br>
+        </br>
+        <button class="button-exclusive" type="submit">Sign in!</button>
+    </form>
+{% endblock %}
