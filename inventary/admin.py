@@ -17,7 +17,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ("name", "price_by_unity", "quantity", "warranty", "date_arrival", "category", "supplier",
                     "state_product")
     search_fields = ["name"]
-    list_filter = ["date_arrival", "state_product"]
+    list_filter = ["date_arrival", "state_product", "category"]
 
 
 admin.site.register(Category, CategoryAdmin)

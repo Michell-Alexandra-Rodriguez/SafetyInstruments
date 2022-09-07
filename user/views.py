@@ -11,10 +11,10 @@ def login_views(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            if str(username).__eq__("admin"):
-                return redirect('../../admin/')
-            else:
+            if is_member(user):
                 return redirect('sell_url')
+            else:
+                return redirect('../../admin/')
         else:
             return render(request, "user/login.html", {'error': 'invalid username or password'})
 
@@ -26,3 +26,7 @@ def log_out(request):
     logout(request)
     print("log out was done perfectly")
     return render(request, 'user/login.html')
+
+
+def is_member(user):
+    return user.groups.filter(name='Sells').exists()
