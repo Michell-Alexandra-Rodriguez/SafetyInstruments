@@ -5,8 +5,8 @@ from .models import PaymentType, Sell
 
 class SellAdmin(admin.ModelAdmin):
     list_display = ("product", "date_sell", "payment_type", "user")
-    search_fields = ["product"]
-    list_filter = ["date_sell","user"]
+    search_fields = ["product__name"]
+    list_filter = ["date_sell","user","payment_type"]
 
 
 admin.site.register(PaymentType)
